@@ -67,19 +67,22 @@
       var name = $('#userName').val();
       var password = $('#password').val();
       // 判断输入不为空
-      if (name == '' || password == '') {
-        $('#myModal').modal('show');
-        $('#pResult').html('请输入内容');
-      }
+
       // 发送ajax请求
       $.post('http://localhost:8000/admin/login', { user_name: name, password: password }, function (res) {
         console.log(res);
-        if (res.code == 200) {
-          window.location.href = 'index.html';
-        } else {
+        if (name == '' || password == '') {
           $('#myModal').modal('show');
-          $('#pResult').html(res.msg);
+          $('#pResult').html('请输入内容');
+        } else {
+          if (res.code == 200) {
+            window.location.href = 'index.html';
+          } else {
+            $('#myModal').modal('show');
+            $('#pResult').html(res.msg);
+          }
         }
+
       })
     })
 

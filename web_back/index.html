@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/iconfont.css" />
   <link rel="stylesheet" href="css/main.css" />
-  <script src="js/lib/jquery-1.12.4.min.js"></script>
+  <script src="js/jquery-1.12.4.min.js"></script>
 </head>
 
 <body>
@@ -145,6 +145,22 @@
     }
   </script>
 
+  <script>
+      // 点击退出  退出到登录界面
+      $('#btnLogout').click(function(){
+        $.post('http://localhost:8000/admin/logout',function(res){
+          window.location.href = 'login.html';
+        })
+      })
+
+
+
+      // 获取管理员信息
+      
+
+
+
+  </script>
 
 
 
