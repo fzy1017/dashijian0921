@@ -9,11 +9,11 @@
   <link rel="stylesheet" type="text/css" href="css/reset.css" />
   <link rel="stylesheet" type="text/css" href="css/iconfont.css" />
   <link rel="stylesheet" type="text/css" href="css/main.css" />
-  <link rel="stylesheet" href="./js/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="js/bootstrap/css/bootstrap.min.css" />
 </head>
 
 <body>
-  <div class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -52,17 +52,36 @@
     </div>
   </div>
 
-  <script src="./js/lib/jquery-1.12.4.min.js"></script>
-  <script src="./js/bootstrap/js/bootstrap.min.js"></script>
-  <script src="./js/utils/config.js"></script>
-  <script src="./js/utils/user.js"></script>
+  <script src="js/jquery-1.12.4.min.js"></script>
+  <script src="js/bootstrap/js/bootstrap.min.js"></script>
+
 
   <script>
-      // 思路
-      // 给按钮添加点击事件
-      // 1. 收集用户的信息，进行简单的判断
-      // 2. ajax请求
-      // 3. 根据结果给反馈
+    // 思路
+    // 给按钮添加点击事件
+    // 1. 收集用户的信息，进行简单的判断
+    // 2. ajax请求
+    // 3. 根据结果给反馈
+    $('#btnLogin').click(function () {
+      // 收集用户输入信息
+      var name = $('#userName').val();
+      var password = $('#password').val();
+      // 判断输入不为空
+      if (name == '' || password == '') {
+        $('#myModal').modal('show');
+        $('#pResult').html('请输入内容');
+      }
+      // 发送ajax请求
+      $.post('http://localhost:8000/admin/login', { user_name: name, password: password }, function (res) {
+        console.log(res);
+        if (res.code == 200) {
+          window.location.href = 'index.html';
+        } else {
+          $('#myModal').modal('show');
+          $('#pResult').html(res.msg);
+        }
+      })
+    })
 
   </script>
 </body>
