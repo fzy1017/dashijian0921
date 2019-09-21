@@ -54,6 +54,7 @@
 
   <script src="js/jquery-1.12.4.min.js"></script>
   <script src="js/bootstrap/js/bootstrap.min.js"></script>
+  <script src="js/jz.js"></script>
 
 
   <script>
@@ -69,8 +70,22 @@
       // 判断输入不为空
 
       // 发送ajax请求
-      $.post('http://localhost:8000/admin/login', { user_name: name, password: password }, function (res) {
-        console.log(res);
+      // $.post('http://localhost:8000/admin/login', { user_name: name, password: password }, function (res) {
+      //   console.log(res);
+      //   if (name == '' || password == '') {
+      //     $('#myModal').modal('show');
+      //     $('#pResult').html('请输入内容');
+      //   } else {
+      //     if (res.code == 200) {
+      //       window.location.href = 'index.html';
+      //     } else {
+      //       $('#myModal').modal('show');
+      //       $('#pResult').html(res.msg);
+      //     }
+      //   }
+
+      // })
+      user.logIN(URL.login,name, password, function (res) {
         if (name == '' || password == '') {
           $('#myModal').modal('show');
           $('#pResult').html('请输入内容');
@@ -82,7 +97,6 @@
             $('#pResult').html(res.msg);
           }
         }
-
       })
     })
 

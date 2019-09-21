@@ -89,7 +89,7 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
-
+  <script src="js/jz.js"></script>
   <script>
     var $level01 = $('.level01');
     var $subli = $('.level02 li');
@@ -169,7 +169,10 @@
     $('#btnLogout').click(function () {
       $('#myModal').modal('show');
       $('#btn_qd').click(function () {
-        $.post('http://localhost:8000/admin/logout', function (res) {
+        // $.post('http://localhost:8000/admin/logout', function (res) {
+        //   window.location.href = 'login.html';
+        // })
+        user.logOut(URL.logout,function (res) {
           window.location.href = 'login.html';
         })
       })
@@ -180,8 +183,13 @@
     // 获取管理员信息
     $(function () {
 
-      $.get('http://localhost:8000/admin/getuser', function (res) {
-        console.log(res);
+      // $.get('http://localhost:8000/admin/getuser', function (res) {
+      //   console.log(res);
+      //   $('#userName').html(res.data.nickname);
+      //   $('#userImg').attr('src', res.data.user_pic);
+      //   $('#useImg').attr('src', res.data.user_pic);
+      // })
+      user.logGet(URL.logget,function(res){
         $('#userName').html(res.data.nickname);
         $('#userImg').attr('src', res.data.user_pic);
         $('#useImg').attr('src', res.data.user_pic);
