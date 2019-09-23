@@ -7,10 +7,7 @@ var URL = {
 var user = {
     // 登录界面
     logIN: function (urL,name, password, hdin) {
-        $.post(urL, {
-            user_name: name,
-            password: password
-        }, function (res) {
+        $.post(urL, {user_name: name,password: password}, function (res) {
             hdin(res);
         })
     },
